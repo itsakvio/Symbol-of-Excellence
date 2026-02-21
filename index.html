@@ -148,75 +148,31 @@
             box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
         }
 
-        /* Hero Section with Video Fix */
+        /* Hero Section - Video Below Headline */
         .hero {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
-            overflow: hidden;
-            margin-top: 0;
+            background: #0a0a0a;
+            padding-top: 80px; /* Space for fixed navbar */
         }
 
-        /* FIXED: Using video background with proper YouTube embed */
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            object-fit: cover;
-        }
-
-        /* Fallback background in case video doesn't load */
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #000, #1a1a1a);
-            display: none;
-            z-index: -1;
-        }
-
-        /* Premium Overlay */
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
-            z-index: 1;
-        }
-
-        /* Headline Container */
+        /* Headline Container - ABOVE the video */
         .headline-container {
-            position: absolute;
-            top: 200px;
-            left: 0;
+            position: relative;
             width: 100%;
             text-align: center;
-            z-index: 2;
-            padding: 0 20px;
+            z-index: 10;
+            padding: 60px 20px 30px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             animation: fadeInUp 1.2s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -256,11 +212,11 @@
         }
 
         .headline-container h1::before {
-            top: -20px;
+            top: 20px;
         }
 
         .headline-container h1::after {
-            bottom: -20px;
+            bottom: 10px;
         }
 
         .headline-container p {
@@ -271,11 +227,53 @@
             font-weight: 300;
             opacity: 0.9;
             animation: fadeIn 2s ease 0.5s both;
+            padding-bottom: 20px;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* Video Section - BELOW the headline */
+        .video-section {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            object-fit: cover;
+        }
+
+        /* Optional overlay on video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+            pointer-events: none;
         }
 
         /* About Section */
@@ -512,7 +510,7 @@
                 height: 40px;
             }
             .headline-container {
-                top: 150px;
+                padding: 40px 20px 20px 20px;
             }
             .headline-container h1 {
                 font-size: 2.8rem;
@@ -521,6 +519,9 @@
             .headline-container p {
                 font-size: 1.2rem;
                 letter-spacing: 3px;
+            }
+            .video-section {
+                height: 50vh;
             }
             .about h2, .collection h2, #contact h2 {
                 font-size: 2.5rem;
@@ -540,6 +541,9 @@
                 width: 60px;
                 height: 60px;
                 font-size: 30px;
+            }
+            .video-section {
+                height: 40vh;
             }
         }
     </style>
@@ -571,16 +575,20 @@
         </a>
     </div>
 
-    <!-- Hero Section with FIXED Video -->
+    <!-- Hero Section with Headline ABOVE video -->
     <section id="home" class="hero">
-        <div class="video-container">
-            <!-- FIXED: Using youtube-nocookie.com and correct parameters -->
-            <iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1&origin=https://yourdomain.com" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-overlay"></div>
+        <!-- Headline Container - ABOVE the video -->
         <div class="headline-container">
             <h1>SYMBOL OF EXCELLENCE</h1>
             <p>ELEGANCE · CONFIDENCE · CLASS</p>
+        </div>
+        
+        <!-- Video Section - BELOW the headline -->
+        <div class="video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-overlay"></div>
         </div>
     </section>
 
@@ -664,12 +672,6 @@
                     });
                 }
             });
-        });
-
-        // Fallback if video doesn't load
-        window.addEventListener('load', function() {
-            const videoIframe = document.querySelector('.video-container iframe');
-            // You can add a fallback image here if needed
         });
     </script>
 </body>
