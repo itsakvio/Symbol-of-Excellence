@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Symbol Of Excellence | Luxury Redefined</title>
     <style>
         * {
@@ -16,11 +16,12 @@
             background-color: #0a0a0a;
             color: #d4d4d4;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Premium Scrollbar */
+        /* Premium Scrollbar - Hidden on mobile */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 5px;
         }
 
         ::-webkit-scrollbar-track {
@@ -32,65 +33,65 @@
             border-radius: 10px;
         }
 
-        /* Slim Premium Navbar */
+        /* Mobile First Approach - Slim Navbar */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 15px 50px;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
+            padding: 8px 15px;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            animation: slideDown 0.8s ease;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
         .logo img {
-            height: 50px;
+            height: 35px;
             width: auto;
-            transition: transform 0.5s ease;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            transition: transform 0.3s ease;
         }
 
-        .logo:hover img {
-            transform: scale(1.05);
+        .logo:active img {
+            transform: scale(0.95);
         }
 
-        /* Centered Nav Links */
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 5px;
+        }
+
+        /* Navigation Links - Desktop by default */
         .nav-links {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
-            gap: 50px;
+            gap: 30px;
+            position: static;
+            transform: none;
         }
 
         .nav-links a {
             color: #fff;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             position: relative;
-            padding: 5px 0;
-            transition: all 0.3s ease;
+            padding: 3px 0;
+            white-space: nowrap;
         }
 
         .nav-links a::before {
@@ -101,29 +102,30 @@
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, #d4af37, #f5d742);
-            transition: width 0.4s ease;
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::before {
+        .nav-links a:hover::before,
+        .nav-links a:active::before {
             width: 100%;
         }
 
-        .nav-links a:hover {
+        .nav-links a:active {
             color: #d4af37;
         }
 
-        /* Floating WhatsApp Button */
+        /* Floating WhatsApp Button - Smaller on mobile */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             z-index: 999;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
 
@@ -131,73 +133,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             border-radius: 50%;
             text-decoration: none;
-            font-size: 35px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             border: 2px solid rgba(255,255,255,0.2);
         }
 
-        .whatsapp-float a:hover {
-            transform: scale(1.15);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        .whatsapp-float a:active {
+            transform: scale(0.95);
         }
 
-        /* Hero Section - Video Below Headline */
+        /* Hero Section */
         .hero {
             width: 100%;
             min-height: 100vh;
             position: relative;
             background: #0a0a0a;
-            padding-top: 80px; /* Space for fixed navbar */
+            padding-top: 70px; /* Adjusted for smaller navbar */
         }
 
-        /* Headline Container - ABOVE the video */
+        /* Headline Container - Mobile Optimized */
         .headline-container {
             position: relative;
             width: 100%;
             text-align: center;
             z-index: 10;
-            padding: 60px 20px 30px 20px;
+            padding: 30px 15px 20px 15px;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            animation: fadeInUp 1.2s ease;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .headline-container h1 {
-            font-size: 6rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            letter-spacing: 12px;
+            letter-spacing: 3px;
             color: transparent;
             text-transform: uppercase;
             background: linear-gradient(135deg, #fff 0%, #d4af37 25%, #fff 50%, #d4af37 75%, #fff 100%);
             background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            margin-bottom: 20px;
-            animation: shine 4s linear infinite;
-        }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
+            margin-bottom: 10px;
+            line-height: 1.2;
+            word-break: break-word;
         }
 
         .headline-container h1::before,
@@ -206,39 +189,33 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 150px;
-            height: 2px;
+            width: 80px;
+            height: 1px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
 
         .headline-container h1::before {
-            top: 20px;
+            top: 10px;
         }
 
         .headline-container h1::after {
-            bottom: 10px;
+            bottom: 5px;
         }
 
         .headline-container p {
-            font-size: 1.6rem;
+            font-size: 1rem;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            letter-spacing: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
             font-weight: 300;
-            opacity: 0.9;
-            animation: fadeIn 2s ease 0.5s both;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
+            word-break: break-word;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Video Section - BELOW the headline */
+        /* Video Section - Mobile Optimized */
         .video-section {
             width: 100%;
-            height: 70vh;
+            height: 45vh;
             position: relative;
             overflow: hidden;
             background: #000;
@@ -257,40 +234,26 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100vw;
-            height: 100vh;
+            width: 150%;
+            height: 150%;
             transform: translate(-50%, -50%);
             pointer-events: none;
-            object-fit: cover;
         }
 
-        /* Optional overlay on video */
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* About Section */
+        /* About Section - Mobile Optimized */
         .about {
-            padding: 120px 50px;
+            padding: 50px 20px;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
             text-align: center;
-            position: relative;
         }
 
         .about h2 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: #d4af37;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             position: relative;
             display: inline-block;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .about h2::before,
@@ -300,55 +263,56 @@
             top: 50%;
             transform: translateY(-50%);
             color: #d4af37;
-            font-size: 2rem;
+            font-size: 1.2rem;
             opacity: 0.5;
         }
 
         .about h2::before {
-            left: -40px;
+            left: -20px;
         }
 
         .about h2::after {
-            right: -40px;
+            right: -20px;
         }
 
         .about p {
-            font-size: 1.3rem;
+            font-size: 1rem;
             max-width: 900px;
             margin: 0 auto;
-            line-height: 1.9;
+            line-height: 1.7;
             color: #e0e0e0;
+            padding: 0 10px;
         }
 
-        /* Latest Collection Section */
+        /* Collection Section - Mobile Optimized */
         .collection {
-            padding: 100px 50px;
+            padding: 50px 15px;
             background: #0f0f0f;
             text-align: center;
         }
 
         .collection h2 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: #d4af37;
-            margin-bottom: 70px;
-            letter-spacing: 3px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
             position: relative;
             display: inline-block;
         }
 
         .collection h2 span {
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 1px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
 
         .collection-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -356,18 +320,16 @@
         .collection-item {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 8px;
             border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.5s ease;
+            transition: transform 0.3s ease;
             aspect-ratio: 3/4;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .collection-item:hover {
-            transform: translateY(-15px);
-            border-color: #d4af37;
-            box-shadow: 0 30px 50px rgba(212, 175, 55, 0.3);
+        .collection-item:active {
+            transform: scale(0.98);
         }
 
         .collection-item img {
@@ -375,178 +337,274 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.8s ease;
         }
 
-        .collection-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .collection-item::after {
-            content: 'View Details';
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #d4af37;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 2;
-            transition: bottom 0.5s ease;
-            background: rgba(0,0,0,0.7);
-            padding: 8px 20px;
-            border-radius: 25px;
-            border: 1px solid #d4af37;
-            white-space: nowrap;
-        }
-
-        .collection-item:hover::after {
-            bottom: 30px;
-        }
-
-        /* Contact Section */
+        /* Contact Section - Mobile Optimized */
         #contact {
-            padding: 100px 20px;
+            padding: 50px 15px;
             background: linear-gradient(135deg, #0a0a0a, #111);
             text-align: center;
         }
 
         #contact h2 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: #d4af37;
-            margin-bottom: 30px;
-            letter-spacing: 3px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
 
         #contact p {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: #ccc;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 10px;
         }
 
         .contact-btn {
             display: inline-block;
             background: linear-gradient(135deg, #d4af37, #8b6f2c);
             color: white;
-            padding: 18px 60px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #f5d742, #b8942f);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
-        }
-
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+            max-width: 280px;
         }
 
-        .contact-btn:hover::before {
-            left: 100%;
+        .contact-btn:active {
+            transform: scale(0.98);
+            background: linear-gradient(135deg, #f5d742, #b8942f);
         }
 
-        /* Footer */
+        /* Footer - Mobile Optimized */
         .footer {
-            padding: 40px;
+            padding: 20px 15px;
             text-align: center;
             background: #050505;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             color: #888;
+            font-size: 0.8rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .headline-container h1 {
-                font-size: 4.5rem;
-                letter-spacing: 8px;
-            }
-        }
-
-        @media (max-width: 1024px) {
+        /* Tablet Styles (481px to 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
             .navbar {
-                padding: 15px 30px;
-            }
-            .nav-links {
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
                 padding: 10px 20px;
             }
-            .nav-links {
-                position: static;
-                transform: none;
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            
             .logo img {
                 height: 40px;
             }
-            .headline-container {
-                padding: 40px 20px 20px 20px;
+            
+            .nav-links {
+                gap: 20px;
             }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+            
             .headline-container h1 {
                 font-size: 2.8rem;
                 letter-spacing: 4px;
             }
+            
             .headline-container p {
                 font-size: 1.2rem;
-                letter-spacing: 3px;
             }
+            
             .video-section {
                 height: 50vh;
             }
-            .about h2, .collection h2, #contact h2 {
-                font-size: 2.5rem;
-            }
-            .about h2::before,
-            .about h2::after {
-                display: none;
+            
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
         }
 
-        @media (max-width: 480px) {
+        /* Desktop Styles (769px and above) */
+        @media (min-width: 769px) {
+            .navbar {
+                padding: 15px 50px;
+            }
+            
+            .logo img {
+                height: 50px;
+            }
+            
+            .nav-links {
+                gap: 50px;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+            }
+            
             .headline-container h1 {
-                font-size: 2rem;
+                font-size: 6rem;
+                letter-spacing: 12px;
+            }
+            
+            .headline-container p {
+                font-size: 1.6rem;
+                letter-spacing: 5px;
+            }
+            
+            .video-section {
+                height: 70vh;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+            
+            .whatsapp-float a {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+            
+            .contact-btn {
+                padding: 15px 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Small Mobile Styles (up to 480px) */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 6px 12px;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a {
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .headline-container {
+                padding: 20px 10px 15px 10px;
+            }
+            
+            .headline-container h1 {
+                font-size: 1.8rem;
                 letter-spacing: 2px;
             }
-            .whatsapp-float a {
-                width: 60px;
-                height: 60px;
-                font-size: 30px;
+            
+            .headline-container p {
+                font-size: 0.9rem;
+                letter-spacing: 1.5px;
             }
+            
             .video-section {
-                height: 40vh;
+                height: 35vh;
+            }
+            
+            .about h2, .collection h2, #contact h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about h2::before,
+            .about h2::after {
+                font-size: 1rem;
+            }
+            
+            .about h2::before {
+                left: -15px;
+            }
+            
+            .about h2::after {
+                right: -15px;
+            }
+            
+            .about p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .whatsapp-float a {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+            
+            .contact-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+                max-width: 240px;
+            }
+            
+            .footer {
+                padding: 15px 10px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Landscape Mode Fixes */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                padding-top: 60px;
+            }
+            
+            .headline-container {
+                padding: 15px 10px;
+            }
+            
+            .headline-container h1 {
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+            
+            .headline-container p {
+                font-size: 0.8rem;
+            }
+            
+            .video-section {
+                height: 80vh;
+            }
+        }
+
+        /* Remove desktop hover effects on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a:hover::before {
+                width: 0;
+            }
+            
+            .collection-item:hover {
+                transform: none;
+            }
+            
+            .collection-item::after {
+                display: none;
             }
         }
     </style>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
@@ -554,10 +612,10 @@
 </head>
 <body>
 
-    <!-- Slim Premium Navbar -->
+    <!-- Slim Navbar - Mobile Optimized -->
     <div class="navbar">
         <div class="logo">
-            <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.07.56-PM.jpeg" alt="Symbol Of Excellence Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x50/000000/d4af37?text=SOE';">
+            <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.07.56-PM.jpeg" alt="Symbol Of Excellence" onerror="this.onerror=null; this.src='https://via.placeholder.com/120x30/000000/d4af37?text=SOE';">
         </div>
         <div class="nav-links">
             <a href="#home">HOME</a>
@@ -565,30 +623,26 @@
             <a href="#about">ABOUT</a>
             <a href="#contact">CONTACT</a>
         </div>
-        <div style="width: 50px;"></div>
     </div>
 
     <!-- Floating WhatsApp Button -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/918956561128" target="_blank">
+        <a href="https://wa.me/918956561128" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- Hero Section with Headline ABOVE video -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Headline Container - ABOVE the video -->
         <div class="headline-container">
             <h1>SYMBOL OF EXCELLENCE</h1>
             <p>ELEGANCE · CONFIDENCE · CLASS</p>
         </div>
         
-        <!-- Video Section - BELOW the headline -->
         <div class="video-section">
             <div class="video-container">
                 <iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="video-overlay"></div>
         </div>
     </section>
 
@@ -596,41 +650,42 @@
     <section id="latest-collection" class="collection">
         <h2>LATEST COLLECTION <span></span></h2>
         <div class="collection-grid">
+            <!-- All 12 images with optimized loading -->
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.40-PM.jpeg" alt="Premium Pakistani Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium+Suit';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.40-PM.jpeg" alt="Premium Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Premium';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.39-PM.jpeg" alt="Luxury Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury+Jewelry';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.39-PM.jpeg" alt="Luxury Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Luxury';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154153.Instagram2.jpg" alt="Elegant Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Elegant';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154153.Instagram2.jpg" alt="Elegant Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Elegant';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154132.Instagram2.jpg" alt="Premium Collection" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154132.Instagram2.jpg" alt="Premium Collection" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Premium';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153442.Photos2.jpg" alt="Luxury Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153442.Photos2.jpg" alt="Luxury" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Luxury';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153433.Photos2.jpg" alt="Traditional Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Traditional';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153433.Photos2.jpg" alt="Traditional" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Traditional';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153431.Photos2.jpg" alt="Modern Style" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Modern';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153431.Photos2.jpg" alt="Modern" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Modern';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0145.jpg-scaled.jpeg" alt="Exclusive Piece" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Exclusive';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0145.jpg-scaled.jpeg" alt="Exclusive" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Exclusive';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0144.jpg-scaled.jpeg" alt="Premium Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0144.jpg-scaled.jpeg" alt="Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Dangler';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0143.jpg-scaled.jpeg" alt="Luxury Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury+Suit';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0143.jpg-scaled.jpeg" alt="Luxury Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Suit';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0140.jpg-scaled.jpeg" alt="Elegant Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Elegant+Jewelry';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0140.jpg-scaled.jpeg" alt="Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Jewelry';">
             </div>
             <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0139.jpg-scaled.jpeg" alt="Timeless Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Timeless';">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0139.jpg-scaled.jpeg" alt="Timeless" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x250/222222/d4af37?text=Timeless';">
             </div>
         </div>
     </section>
@@ -646,31 +701,41 @@
     <!-- Contact Section -->
     <section id="contact">
         <h2>CONTACT US</h2>
-        <p>Experience luxury firsthand. Reach out to us for inquiries, custom orders, or styling advice.</p>
-        <a href="https://wa.me/918956561128" target="_blank" class="contact-btn">
-            <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> WHATSAPP US
+        <p>Experience luxury firsthand. Reach out for inquiries or styling advice.</p>
+        <a href="https://wa.me/918956561128" target="_blank" rel="noopener noreferrer" class="contact-btn">
+            <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> WHATSAPP US
         </a>
     </section>
 
     <!-- Footer -->
     <div class="footer">
-        <p>© 2026 SYMBOL OF EXCELLENCE. ALL RIGHTS RESERVED. | LUXURY REDEFINED</p>
+        <p>© 2026 SYMBOL OF EXCELLENCE. ALL RIGHTS RESERVED.</p>
     </div>
 
-    <!-- Smooth Scrolling -->
+    <!-- Smooth Scrolling - Mobile Optimized -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offset = 80;
+                    const offset = 60; // Smaller offset for mobile
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Handle touch events for mobile
+        document.querySelectorAll('.collection-item').forEach(item => {
+            item.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            item.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
             });
         });
     </script>
