@@ -1,1011 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Symbol Of Excellence | Luxury Redefined Premium Collection</title>
-    <style>
-        /* ===== RESET & VARIABLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cormorant Garamond', 'Poppins', serif;
-        }
-
-        :root {
-            --primary-gold: #d4af37;
-            --primary-gold-light: #f5d742;
-            --primary-gold-dark: #b8942f;
-            --secondary-green: #25D366;
-            --secondary-green-dark: #128C7E;
-            --dark-bg: #0a0a0a;
-            --darker-bg: #050505;
-            --card-bg: #111;
-            --text-light: #fff;
-            --text-muted: #ccc;
-            --text-dark: #888;
-            --glow-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-muted);
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        /* ===== CUSTOM CURSOR ===== */
-        .cursor {
-            display: none;
-        }
-
-        @media (min-width: 1024px) {
-            .cursor {
-                display: block;
-                width: 20px;
-                height: 20px;
-                border: 2px solid var(--primary-gold);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                transition: transform 0.2s ease;
-                transform: translate(-50%, -50%);
-                mix-blend-mode: difference;
-            }
-            
-            .cursor-follower {
-                width: 40px;
-                height: 40px;
-                border: 1px solid rgba(212, 175, 55, 0.3);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9998;
-                transition: transform 0.4s ease;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        /* ===== PREMIUM SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--darker-bg);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--primary-gold-light), var(--primary-gold));
-        }
-
-        /* ===== NAVBAR - ULTRA SLIM WITH GLASS EFFECT ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 12px 30px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            animation: slideDown 0.8s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            position: relative;
-            overflow: visible;
-        }
-
-        .logo img {
-            height: 45px;
-            width: auto;
-            transition: var(--transition-smooth);
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
-        }
-
-        .logo:hover img {
-            transform: scale(1.1) rotate(2deg);
-            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.6));
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary-gold), transparent) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .logo:hover::before {
-            opacity: 1;
-        }
-
-        /* Navigation Links - Centered with Premium Hover */
-        .nav-links {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 45px;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition-smooth);
-            font-family: 'Poppins', sans-serif;
-            opacity: 0.9;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--primary-gold-light), var(--primary-gold));
-            transition: width 0.4s ease;
-            box-shadow: 0 0 15px var(--primary-gold);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -10px;
-            right: -10px;
-            bottom: -5px;
-            border: 1px solid transparent;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        /* ===== FLOATING WHATSAPP BUTTON - GREEN WITH GLOW ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.05); }
-            100% { transform: translateY(0px) scale(1); }
-        }
-
-        .whatsapp-float a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 35px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .whatsapp-float a:hover {
-            transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7), 0 0 30px #25D366;
-            background: linear-gradient(135deg, #128C7E, #25D366);
-        }
-
-        .whatsapp-float a::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border-radius: 50%;
-            border: 2px solid #25D366;
-            animation: pulse 1.8s infinite;
-            opacity: 0;
-        }
-
-        .whatsapp-float a:hover::before {
-            opacity: 1;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            70% {
-                transform: scale(1.3);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1.3);
-                opacity: 0;
-            }
-        }
-
-        .whatsapp-float a::after {
-            content: 'Chat with us';
-            position: absolute;
-            right: 80px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #25D366;
-            pointer-events: none;
-        }
-
-        .whatsapp-float a:hover::after {
-            opacity: 1;
-            visibility: visible;
-            right: 90px;
-        }
-
-        /* ===== HERO SECTION WITH 3D EFFECT ===== */
-        .hero {
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-            background: var(--dark-bg);
-            padding-top: 80px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
-            animation: rotateBg 30s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotateBg {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Headline Container with 3D Effect */
-        .headline-container {
-            position: relative;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-            padding: 50px 20px 30px;
-            background: linear-gradient(135deg, rgba(10,10,10,0.9), rgba(20,20,20,0.95));
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .headline-container h1 {
-            font-size: 6rem;
-            font-weight: 800;
-            letter-spacing: 15px;
-            color: transparent;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #fff 0%, #d4af37 20%, #fff 40%, #d4af37 60%, #fff 80%);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            margin-bottom: 15px;
-            animation: shine 4s linear infinite;
-            transform: translateZ(20px);
-            position: relative;
-            display: inline-block;
-        }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .headline-container h1::before {
-            content: 'SYMBOL OF EXCELLENCE';
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2);
-            z-index: -1;
-        }
-
-        .headline-container h1::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #d4af37, #fff, #d4af37, transparent);
-        }
-
-        .headline-container p {
-            font-size: 1.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            letter-spacing: 8px;
-            font-weight: 300;
-            opacity: 0.9;
-            transform: translateZ(10px);
-        }
-
-        /* Video Section with Glass Effect */
-        .video-section {
-            width: 100%;
-            height: 70vh;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 -20px 30px rgba(0,0,0,0.5);
-        }
-
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* ===== ABOUT SECTION WITH GLASSMORPHISM ===== */
-        .about {
-            padding: 100px 30px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M20 20 L80 20 L80 80 L20 80 Z" fill="none" stroke="%23d4af37" stroke-width="0.5"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23d4af37" stroke-width="0.5"/></svg>');
-            background-size: 50px 50px;
-            animation: movePattern 20s linear infinite;
-        }
-
-        @keyframes movePattern {
-            from { background-position: 0 0; }
-            to { background-position: 100px 100px; }
-        }
-
-        .about h2 {
-            font-size: 3.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .about h2 span {
-            position: absolute;
-            top: 50%;
-            left: -40px;
-            width: 30px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-gold));
-        }
-
-        .about h2 span:last-child {
-            left: auto;
-            right: -40px;
-            background: linear-gradient(90deg, var(--primary-gold), transparent);
-        }
-
-        .about p {
-            font-size: 1.3rem;
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.9;
-            color: #e0e0e0;
-            position: relative;
-            z-index: 1;
-            padding: 30px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.5s ease;
-        }
-
-        .about p:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1);
-            transform: translateY(-5px);
-        }
-
-        /* ===== COLLECTION SECTION WITH 3D CARDS ===== */
-        .collection {
-            padding: 100px 30px;
-            background: #0f0f0f;
-            text-align: center;
-            position: relative;
-        }
-
-        .collection h2 {
-            font-size: 3.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 60px;
-            letter-spacing: 4px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .collection h2::before,
-        .collection h2::after {
-            content: '◆';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-            opacity: 0.5;
-        }
-
-        .collection h2::before {
-            left: -50px;
-        }
-
-        .collection h2::after {
-            right: -50px;
-        }
-
-        .collection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-            perspective: 2000px;
-        }
-
-        .collection-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 3/4;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .collection-item:hover {
-            transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.02);
-            border-color: var(--primary-gold);
-            box-shadow: 0 40px 70px rgba(212, 175, 55, 0.3);
-        }
-
-        .collection-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.6s ease;
-        }
-
-        .collection-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .collection-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .collection-item:hover::before {
-            opacity: 1;
-        }
-
-        .collection-item::after {
-            content: 'VIEW DETAILS →';
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--primary-gold);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 2;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 25px;
-            border-radius: 30px;
-            border: 1px solid var(--primary-gold);
-            white-space: nowrap;
-            opacity: 0;
-            transition: all 0.4s ease;
-            font-weight: 500;
-        }
-
-        .collection-item:hover::after {
-            opacity: 1;
-            bottom: 40px;
-        }
-
-        /* ===== CONTACT SECTION WITH GLOWING BUTTON ===== */
-        #contact {
-            padding: 100px 30px;
-            background: linear-gradient(135deg, #0a0a0a, #111);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #contact::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-            animation: rotateBg 40s linear infinite;
-        }
-
-        #contact h2 {
-            font-size: 3.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 30px;
-            letter-spacing: 4px;
-        }
-
-        #contact p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            padding: 18px 60px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            border: 2px solid rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            z-index: 1;
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.08) translateY(-5px);
-            background: linear-gradient(135deg, #128C7E, #25D366);
-            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.7), 0 0 30px #25D366;
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .contact-btn:active {
-            transform: scale(0.98);
-        }
-
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-            z-index: -1;
-        }
-
-        .contact-btn:hover::before {
-            left: 100%;
-        }
-
-        /* ===== FOOTER WITH GRADIENT ===== */
-        .footer {
-            padding: 40px 30px;
-            text-align: center;
-            background: #030303;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            color: #666;
-            position: relative;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .footer p {
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer p::before,
-        .footer p::after {
-            content: '✦';
-            margin: 0 15px;
-            color: var(--primary-gold);
-            opacity: 0.5;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1024px) {
-            .headline-container h1 {
-                font-size: 4rem;
-                letter-spacing: 8px;
-            }
-            
-            .headline-container p {
-                font-size: 1.4rem;
-                letter-spacing: 5px;
-            }
-            
-            .nav-links {
-                gap: 30px;
-            }
-            
-            .collection h2::before,
-            .collection h2::after {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 10px 20px;
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .nav-links {
-                position: static;
-                transform: none;
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-            
-            .logo img {
-                height: 40px;
-            }
-            
-            .headline-container h1 {
-                font-size: 2.8rem;
-                letter-spacing: 5px;
-            }
-            
-            .headline-container p {
-                font-size: 1.2rem;
-                letter-sppping: 3px;
-            }
-            
-            .video-section {
-                height: 50vh;
-            }
-            
-            .about h2, .collection h2, #contact h2 {
-                font-size: 2.5rem;
-            }
-            
-            .about p {
-                font-size: 1.1rem;
-                padding: 20px;
-            }
-            
-            .collection-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .whatsapp-float a {
-                width: 60px;
-                height: 60px;
-                font-size: 30px;
-            }
-            
-            .whatsapp-float a::after {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .headline-container h1 {
-                font-size: 2rem;
-                letter-spacing: 3px;
-            }
-            
-            .headline-container p {
-                font-size: 0.9rem;
-                letter-spacing: 2px;
-            }
-            
-            .nav-links {
-                gap: 12px;
-            }
-            
-            .nav-links a {
-                font-size: 0.75rem;
-                letter-spacing: 0.5px;
-            }
-            
-            .video-section {
-                height: 35vh;
-            }
-            
-            .collection-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            
-            .collection-item::after {
-                font-size: 0.7rem;
-                padding: 5px 12px;
-            }
-            
-            .about h2, .collection h2, #contact h2 {
-                font-size: 1.8rem;
-            }
-            
-            .about p {
-                font-size: 0.9rem;
-                padding: 15px;
-            }
-            
-            .contact-btn {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-            
-            .footer p::before,
-            .footer p::after {
-                margin: 0 5px;
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
-            100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-        }
-
-        .collection-item:nth-child(odd) {
-            animation: glowPulse 3s infinite;
-        }
-
-        /* Loading Animation for Images */
-        .collection-item {
-            animation: fadeInScale 0.8s ease backwards;
-        }
-
-        @for $i from 1 through 12 {
-            .collection-item:nth-child(#{$i}) {
-                animation-delay: #{$i * 0.1}s;
-            }
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* ===== HOVER EFFECTS FOR TOUCH DEVICES ===== */
-        @media (hover: none) and (pointer: coarse) {
-            .collection-item:active {
-                transform: scale(0.98);
-            }
-            
-            .collection-item::after {
-                display: none;
-            }
-            
-            .nav-links a:active {
-                color: var(--primary-gold);
-            }
-            
-            .contact-btn:active {
-                transform: scale(0.98);
-            }
-        }
-    </style>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symbol Of Excellence | Luxury Redefined</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cormorant Garamond',serif;
+scroll-behavior:smooth;
+transition:all .3s ease-in-out;
+}
+
+body{
+background:linear-gradient(-45deg,#000,#111,#1a1a1a,#000);
+background-size:400% 400%;
+animation:gradientShift 15s ease infinite;
+color:#fff;
+overflow-x:hidden;
+}
+
+@keyframes gradientShift{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* Loader */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+#loader h1{
+color:#d4af37;
+font-size:2rem;
+letter-spacing:3px;
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+0%{opacity:.3}
+50%{opacity:1}
+100%{opacity:.3}
+}
+
+/* Navbar */
+.navbar{
+position:fixed;
+width:100%;
+top:0;
+left:0;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(212,175,55,.3);
+z-index:1000;
+}
+
+.nav-links a{
+color:#fff;
+margin:0 20px;
+text-decoration:none;
+font-size:.9rem;
+letter-spacing:2px;
+position:relative;
+}
+
+.nav-links a:after{
+content:'';
+position:absolute;
+width:0;
+height:2px;
+left:0;
+bottom:-5px;
+background:#d4af37;
+transition:.3s;
+}
+.nav-links a:hover:after{
+width:100%;
+}
+
+/* Hero */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:80px;
+}
+
+.hero h1{
+font-size:4rem;
+background:linear-gradient(90deg,#fff,#d4af37,#fff);
+background-size:200% auto;
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 4s linear infinite;
+letter-spacing:10px;
+}
+
+@keyframes shine{
+0%{background-position:0% center}
+100%{background-position:200% center}
+}
+
+.hero p{
+margin-top:15px;
+letter-spacing:4px;
+color:#ccc;
+}
+
+/* Video */
+.video-section{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
+}
+.video-section iframe{
+width:150%;
+height:150%;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+pointer-events:none;
+}
+.video-overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.9));
+}
+
+/* Collection */
+.collection{
+padding:100px 50px;
+text-align:center;
+}
+.collection h2{
+color:#d4af37;
+margin-bottom:40px;
+font-size:2.5rem;
+letter-spacing:3px;
+}
+
+.collection-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.collection-item{
+position:relative;
+overflow:hidden;
+border-radius:10px;
+transform-style:preserve-3d;
+cursor:pointer;
+}
+.collection-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:10px;
+}
+
+.collection-item:hover{
+transform:rotateY(8deg) rotateX(5deg) scale(1.05);
+box-shadow:0 20px 40px rgba(212,175,55,.3);
+}
+
+/* About */
+.about{
+padding:100px 40px;
+text-align:center;
+background:#0a0a0a;
+}
+.about h2{
+color:#d4af37;
+font-size:2.5rem;
+margin-bottom:20px;
+}
+.about p{
+max-width:800px;
+margin:auto;
+line-height:1.8;
+color:#ccc;
+}
+
+/* Contact */
+#contact{
+padding:100px 40px;
+text-align:center;
+}
+#contact h2{
+color:#d4af37;
+margin-bottom:20px;
+font-size:2.5rem;
+}
+.contact-btn{
+display:inline-block;
+margin-top:30px;
+padding:15px 40px;
+background:linear-gradient(135deg,#25D366,#0f9d58);
+border-radius:40px;
+color:#fff;
+text-decoration:none;
+font-size:1rem;
+box-shadow:0 0 20px rgba(37,211,102,.6);
+position:relative;
+overflow:hidden;
+}
+.contact-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px rgba(37,211,102,.9);
+}
+
+/* Floating WhatsApp */
+.whatsapp-float{
+position:fixed;
+bottom:30px;
+right:30px;
+z-index:999;
+}
+.whatsapp-float a{
+width:70px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#25D366;
+color:#fff;
+border-radius:50%;
+font-size:35px;
+box-shadow:0 0 25px rgba(37,211,102,.7);
+animation:float 3s infinite;
+}
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+/* Footer */
+.footer{
+padding:20px;
+text-align:center;
+background:#000;
+color:#777;
+}
+
+/* Scroll Reveal */
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:all .8s ease;
+}
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:768px){
+.hero h1{font-size:2rem;letter-spacing:5px;}
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Custom Cursor (Desktop Only) -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+<div id="loader"><h1>SYMBOL OF EXCELLENCE</h1></div>
 
-    <!-- Slim Navbar - Premium -->
-    <div class="navbar">
-        <div class="logo">
-            <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.07.56-PM.jpeg" alt="Symbol Of Excellence" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x45/000000/d4af37?text=SOE';">
-        </div>
-        <div class="nav-links">
-            <a href="#home">HOME</a>
-            <a href="#latest-collection">COLLECTION</a>
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
-        </div>
-        <div style="width: 45px;"></div> <!-- Spacer for balance -->
-    </div>
+<div class="navbar">
+<div class="logo" style="color:#d4af37;font-size:1.2rem;">SYMBOL</div>
+<div class="nav-links">
+<a href="#home">HOME</a>
+<a href="#collection">COLLECTION</a>
+<a href="#about">ABOUT</a>
+<a href="#contact">CONTACT</a>
+</div>
+</div>
 
-    <!-- Floating WhatsApp Button - Green with Glow -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/918956561128" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+<section class="hero" id="home">
+<div class="video-section">
+<div class="video-overlay"></div>
+<iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0"></iframe>
+</div>
+<h1>SYMBOL OF EXCELLENCE</h1>
+<p>ELEGANCE • CONFIDENCE • CLASS</p>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="headline-container">
-            <h1>SYMBOL OF EXCELLENCE</h1>
-            <p>ELEGANCE · CONFIDENCE · CLASS</p>
-        </div>
-        
-        <div class="video-section">
-            <div class="video-container">
-                <iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-overlay"></div>
-        </div>
-    </section>
+<section class="collection reveal" id="collection">
+<h2>LATEST COLLECTION</h2>
+<div class="collection-grid">
+<img src="https://picsum.photos/400/500?1">
+<img src="https://picsum.photos/400/500?2">
+<img src="https://picsum.photos/400/500?3">
+<img src="https://picsum.photos/400/500?4">
+</div>
+</section>
 
-    <!-- Latest Collection Section -->
-    <section id="latest-collection" class="collection">
-        <h2>LATEST COLLECTION</h2>
-        <div class="collection-grid">
-            <!-- All 12 images with premium effects -->
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.40-PM.jpeg" alt="Premium Pakistani Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium+Suit';">
-            </div>
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.39-PM.jpeg" alt="Luxury Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury+Jewelry';">
-            </div>
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154153.Instagram2.jpg" alt="Elegant Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Elegant';">
-            </div>
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154132.Instagram2.jpg" alt="Premium Collection" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium';">
-            </div>
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153442.Photos2.jpg" alt="Luxury Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury';">
-            </div>
-            <div class="collection-item">
-                <img src="https://adgrowth7.xyz
+<section class="about reveal" id="about">
+<h2>ABOUT US</h2>
+<p>We are the Symbol of Excellence in premium Pakistani suits, elegant danglers, and luxury jewellery. Our collection blends tradition with modern luxury.</p>
+</section>
+
+<section id="contact" class="reveal">
+<h2>CONTACT US</h2>
+<a href="https://wa.me/918956561128" class="contact-btn"><i class="fab fa-whatsapp"></i> WHATSAPP US</a>
+</section>
+
+<div class="footer">
+© 2026 SYMBOL OF EXCELLENCE. ALL RIGHTS RESERVED.
+</div>
+
+<div class="whatsapp-float">
+<a href="https://wa.me/918956561128"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<script>
+window.addEventListener("load",function(){
+document.getElementById("loader").style.display="none";
+});
+
+window.addEventListener("scroll",function(){
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight - 100){
+el.classList.add("active");
+}
+});
+});
+</script>
+
+</body>
+</html>
