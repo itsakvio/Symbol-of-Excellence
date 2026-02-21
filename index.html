@@ -1,355 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Symbol Of Excellence | Luxury Redefined</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol Of Excellence | Luxury Redefined</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', 'Poppins', serif;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        body {
+            background-color: #0a0a0a;
+            color: #d4d4d4;
+            overflow-x: hidden;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cormorant Garamond',serif;
-scroll-behavior:smooth;
-transition:all .3s ease-in-out;
-}
+        /* Premium Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-body{
-background:linear-gradient(-45deg,#000,#111,#1a1a1a,#000);
-background-size:400% 400%;
-animation:gradientShift 15s ease infinite;
-color:#fff;
-overflow-x:hidden;
-}
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
 
-@keyframes gradientShift{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #d4af37, #8b6f2c);
+            border-radius: 10px;
+        }
 
-/* Loader */
-#loader{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-#loader h1{
-color:#d4af37;
-font-size:2rem;
-letter-spacing:3px;
-animation:pulse 2s infinite;
-}
-@keyframes pulse{
-0%{opacity:.3}
-50%{opacity:1}
-100%{opacity:.3}
-}
+        /* Slim Premium Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            animation: slideDown 0.8s ease;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
 
-/* Navbar */
-.navbar{
-position:fixed;
-width:100%;
-top:0;
-left:0;
-padding:15px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,.7);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(212,175,55,.3);
-z-index:1000;
-}
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-.nav-links a{
-color:#fff;
-margin:0 20px;
-text-decoration:none;
-font-size:.9rem;
-letter-spacing:2px;
-position:relative;
-}
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
 
-.nav-links a:after{
-content:'';
-position:absolute;
-width:0;
-height:2px;
-left:0;
-bottom:-5px;
-background:#d4af37;
-transition:.3s;
-}
-.nav-links a:hover:after{
-width:100%;
-}
+        .logo:hover img {
+            transform: scale(1.05);
+        }
 
-/* Hero */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:80px;
-}
+        /* Centered Nav Links */
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 50px;
+        }
 
-.hero h1{
-font-size:4rem;
-background:linear-gradient(90deg,#fff,#d4af37,#fff);
-background-size:200% auto;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 4s linear infinite;
-letter-spacing:10px;
-}
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
 
-@keyframes shine{
-0%{background-position:0% center}
-100%{background-position:200% center}
-}
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #f5d742);
+            transition: width 0.4s ease;
+        }
 
-.hero p{
-margin-top:15px;
-letter-spacing:4px;
-color:#ccc;
-}
+        .nav-links a:hover::before {
+            width: 100%;
+        }
 
-/* Video */
-.video-section{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-overflow:hidden;
-}
-.video-section iframe{
-width:150%;
-height:150%;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-pointer-events:none;
-}
-.video-overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.9));
-}
+        .nav-links a:hover {
+            color: #d4af37;
+        }
 
-/* Collection */
-.collection{
-padding:100px 50px;
-text-align:center;
-}
-.collection h2{
-color:#d4af37;
-margin-bottom:40px;
-font-size:2.5rem;
-letter-spacing:3px;
-}
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            animation: float 3s ease-in-out infinite;
+        }
 
-.collection-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
 
-.collection-item{
-position:relative;
-overflow:hidden;
-border-radius:10px;
-transform-style:preserve-3d;
-cursor:pointer;
-}
-.collection-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:10px;
-}
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 35px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
 
-.collection-item:hover{
-transform:rotateY(8deg) rotateX(5deg) scale(1.05);
-box-shadow:0 20px 40px rgba(212,175,55,.3);
-}
+        .whatsapp-float a:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
 
-/* About */
-.about{
-padding:100px 40px;
-text-align:center;
-background:#0a0a0a;
-}
-.about h2{
-color:#d4af37;
-font-size:2.5rem;
-margin-bottom:20px;
-}
-.about p{
-max-width:800px;
-margin:auto;
-line-height:1.8;
-color:#ccc;
-}
+        /* Hero Section - Video Below Headline */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            background: #0a0a0a;
+            padding-top: 80px; /* Space for fixed navbar */
+        }
 
-/* Contact */
-#contact{
-padding:100px 40px;
-text-align:center;
-}
-#contact h2{
-color:#d4af37;
-margin-bottom:20px;
-font-size:2.5rem;
-}
-.contact-btn{
-display:inline-block;
-margin-top:30px;
-padding:15px 40px;
-background:linear-gradient(135deg,#25D366,#0f9d58);
-border-radius:40px;
-color:#fff;
-text-decoration:none;
-font-size:1rem;
-box-shadow:0 0 20px rgba(37,211,102,.6);
-position:relative;
-overflow:hidden;
-}
-.contact-btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 40px rgba(37,211,102,.9);
-}
+        /* Headline Container - ABOVE the video */
+        .headline-container {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            padding: 60px 20px 30px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            animation: fadeInUp 1.2s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
 
-/* Floating WhatsApp */
-.whatsapp-float{
-position:fixed;
-bottom:30px;
-right:30px;
-z-index:999;
-}
-.whatsapp-float a{
-width:70px;
-height:70px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#25D366;
-color:#fff;
-border-radius:50%;
-font-size:35px;
-box-shadow:0 0 25px rgba(37,211,102,.7);
-animation:float 3s infinite;
-}
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-100%{transform:translateY(0)}
-}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Footer */
-.footer{
-padding:20px;
-text-align:center;
-background:#000;
-color:#777;
-}
+        .headline-container h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: 12px;
+            color: transparent;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, #d4af37 25%, #fff 50%, #d4af37 75%, #fff 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
+            animation: shine 4s linear infinite;
+        }
 
-/* Scroll Reveal */
-.reveal{
-opacity:0;
-transform:translateY(50px);
-transition:all .8s ease;
-}
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
+        @keyframes shine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
 
-@media(max-width:768px){
-.hero h1{font-size:2rem;letter-spacing:5px;}
-}
-</style>
+        .headline-container h1::before,
+        .headline-container h1::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .headline-container h1::before {
+            top: 20px;
+        }
+
+        .headline-container h1::after {
+            bottom: 10px;
+        }
+
+        .headline-container p {
+            font-size: 1.6rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 5px;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: fadeIn 2s ease 0.5s both;
+            padding-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Video Section - BELOW the headline */
+        .video-section {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            object-fit: cover;
+        }
+
+        /* Optional overlay on video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 50px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .about h2 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 3px;
+        }
+
+        .about h2::before,
+        .about h2::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4af37;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        .about h2::before {
+            left: -40px;
+        }
+
+        .about h2::after {
+            right: -40px;
+        }
+
+        .about p {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.9;
+            color: #e0e0e0;
+        }
+
+        /* Latest Collection Section */
+        .collection {
+            padding: 100px 50px;
+            background: #0f0f0f;
+            text-align: center;
+        }
+
+        .collection h2 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 70px;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .collection h2 span {
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collection-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s ease;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .collection-item:hover {
+            transform: translateY(-15px);
+            border-color: #d4af37;
+            box-shadow: 0 30px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .collection-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .collection-item::after {
+            content: 'View Details';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 2;
+            transition: bottom 0.5s ease;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 1px solid #d4af37;
+            white-space: nowrap;
+        }
+
+        .collection-item:hover::after {
+            bottom: 30px;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #0a0a0a, #111);
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+
+        #contact p {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #8b6f2c);
+            color: white;
+            padding: 18px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #f5d742, #b8942f);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .headline-container h1 {
+                font-size: 4.5rem;
+                letter-spacing: 8px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+            .nav-links {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 20px;
+            }
+            .nav-links {
+                position: static;
+                transform: none;
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .logo img {
+                height: 40px;
+            }
+            .headline-container {
+                padding: 40px 20px 20px 20px;
+            }
+            .headline-container h1 {
+                font-size: 2.8rem;
+                letter-spacing: 4px;
+            }
+            .headline-container p {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+            .video-section {
+                height: 50vh;
+            }
+            .about h2, .collection h2, #contact h2 {
+                font-size: 2.5rem;
+            }
+            .about h2::before,
+            .about h2::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .headline-container h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            .whatsapp-float a {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+            .video-section {
+                height: 40vh;
+            }
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
 
-<div id="loader"><h1>SYMBOL OF EXCELLENCE</h1></div>
+    <!-- Slim Premium Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.07.56-PM.jpeg" alt="Symbol Of Excellence Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x50/000000/d4af37?text=SOE';">
+        </div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#latest-collection">COLLECTION</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+        <div style="width: 50px;"></div>
+    </div>
 
-<div class="navbar">
-<div class="logo" style="color:#d4af37;font-size:1.2rem;">SYMBOL</div>
-<div class="nav-links">
-<a href="#home">HOME</a>
-<a href="#collection">COLLECTION</a>
-<a href="#about">ABOUT</a>
-<a href="#contact">CONTACT</a>
-</div>
-</div>
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/918956561128" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
-<section class="hero" id="home">
-<div class="video-section">
-<div class="video-overlay"></div>
-<iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0"></iframe>
-</div>
-<h1>SYMBOL OF EXCELLENCE</h1>
-<p>ELEGANCE • CONFIDENCE • CLASS</p>
-</section>
+    <!-- Hero Section with Headline ABOVE video -->
+    <section id="home" class="hero">
+        <!-- Headline Container - ABOVE the video -->
+        <div class="headline-container">
+            <h1>SYMBOL OF EXCELLENCE</h1>
+            <p>ELEGANCE · CONFIDENCE · CLASS</p>
+        </div>
+        
+        <!-- Video Section - BELOW the headline -->
+        <div class="video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube-nocookie.com/embed/XKfncuWbmB4?autoplay=1&mute=1&loop=1&playlist=XKfncuWbmB4&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-overlay"></div>
+        </div>
+    </section>
 
-<section class="collection reveal" id="collection">
-<h2>LATEST COLLECTION</h2>
-<div class="collection-grid">
-<img src="https://picsum.photos/400/500?1">
-<img src="https://picsum.photos/400/500?2">
-<img src="https://picsum.photos/400/500?3">
-<img src="https://picsum.photos/400/500?4">
-</div>
-</section>
+    <!-- Latest Collection Section -->
+    <section id="latest-collection" class="collection">
+        <h2>LATEST COLLECTION <span></span></h2>
+        <div class="collection-grid">
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.40-PM.jpeg" alt="Premium Pakistani Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium+Suit';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-21-at-6.09.39-PM.jpeg" alt="Luxury Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury+Jewelry';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154153.Instagram2.jpg" alt="Elegant Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Elegant';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-154132.Instagram2.jpg" alt="Premium Collection" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153442.Photos2.jpg" alt="Luxury Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153433.Photos2.jpg" alt="Traditional Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Traditional';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/Screenshot_20260221-153431.Photos2.jpg" alt="Modern Style" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Modern';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0145.jpg-scaled.jpeg" alt="Exclusive Piece" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Exclusive';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0144.jpg-scaled.jpeg" alt="Premium Dangler" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Premium';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0143.jpg-scaled.jpeg" alt="Luxury Suit" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Luxury+Suit';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0140.jpg-scaled.jpeg" alt="Elegant Jewelry" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Elegant+Jewelry';">
+            </div>
+            <div class="collection-item">
+                <img src="https://adgrowth7.xyz/wp-content/uploads/2026/02/IMG-20260221-WA0139.jpg-scaled.jpeg" alt="Timeless Design" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400/222222/d4af37?text=Timeless';">
+            </div>
+        </div>
+    </section>
 
-<section class="about reveal" id="about">
-<h2>ABOUT US</h2>
-<p>We are the Symbol of Excellence in premium Pakistani suits, elegant danglers, and luxury jewellery. Our collection blends tradition with modern luxury.</p>
-</section>
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <h2>ABOUT US</h2>
+        <p>
+            We are the Symbol of Excellence in premium Pakistani suits, elegant danglers, and luxury jewellery. Our collection blends rich tradition with modern style, offering timeless designs crafted with quality and perfection. We don't just sell fashion — we deliver elegance, confidence, and class. ✨
+        </p>
+    </section>
 
-<section id="contact" class="reveal">
-<h2>CONTACT US</h2>
-<a href="https://wa.me/918956561128" class="contact-btn"><i class="fab fa-whatsapp"></i> WHATSAPP US</a>
-</section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>CONTACT US</h2>
+        <p>Experience luxury firsthand. Reach out to us for inquiries, custom orders, or styling advice.</p>
+        <a href="https://wa.me/918956561128" target="_blank" class="contact-btn">
+            <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> WHATSAPP US
+        </a>
+    </section>
 
-<div class="footer">
-© 2026 SYMBOL OF EXCELLENCE. ALL RIGHTS RESERVED.
-</div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2026 SYMBOL OF EXCELLENCE. ALL RIGHTS RESERVED. | LUXURY REDEFINED</p>
+    </div>
 
-<div class="whatsapp-float">
-<a href="https://wa.me/918956561128"><i class="fab fa-whatsapp"></i></a>
-</div>
-
-<script>
-window.addEventListener("load",function(){
-document.getElementById("loader").style.display="none";
-});
-
-window.addEventListener("scroll",function(){
-document.querySelectorAll(".reveal").forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight - 100){
-el.classList.add("active");
-}
-});
-});
-</script>
-
+    <!-- Smooth Scrolling -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
